@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/michal/dev/the_hype'
+let g:netrw_dirhist_2='/Users/michal/dev/katas/kana_converter'
+let g:netrw_dirhist_3='/Users/michal/dev/the_hype'
