@@ -5,18 +5,65 @@ set nocompatible
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
+if has("vms")
+  set nobackup		" do not keep a backup file, use versions instead
+else
+  set backup		" keep a backup file
+endif
+" large history
+set history=500
+set ruler		" show the cursor position all the time
+set showcmd		" display incomplete commands
+set showmode    "show current mode down the bottom
+set incsearch		" do incremental searching
+set hlsearch " highlight search
+
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set noexpandtab
 set number
 set showbreak=…
+set wrap linebreak nolist
+
+"mapping for command key to map navigation thru display lines instead
+"of just numbered lines
+vmap <D-j> gj
+vmap <D-k> gk
+vmap <D-4> g$
+vmap <D-6> g^
+vmap <D-0> g^
+nmap <D-j> gj
+nmap <D-k> gk
+nmap <D-4> g$
+nmap <D-6> g^
+nmap <D-0> g^
+
+"disable visual bell
+set visualbell t_vb=
+"turn off needless toolbar on gvim/mvim
+set guioptions-=T
 
 colorscheme railscasts
 
+"folding settings
+set foldmethod=indent "fold based on indent
+set foldnestmax=3 "deepest fold is 3 levels
+set nofoldenable "dont fold by default
+
 syntax on
 
+"Command-T configuration
+let g:CommandTMaxHeight=10
+let g:CommandTMatchWindowAtTop=1
+
+"map to CommandT TextMate style finder
+nnoremap <leader>t :CommandT<CR>
+
+nmap <silent> <Leader>p :NERDTreeToggle<CR>
 " Only do this part when compiled with support for autocommands.
+" o
+
 if has("autocmd")
 
   " Enable file type detection.
