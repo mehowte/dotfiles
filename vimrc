@@ -5,12 +5,21 @@ set nocompatible
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
+" Only do case sensitive match on Upper Case
+set smartcase         
+
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
-set noexpandtab
+set expandtab         " Expand tabs to spaces
+set smarttab          " Backspace over expandtab
 set number
 set showbreak=…
+
+set showcmd           " Show the command you have typed in
+set showmatch         " Show matching brackets or parentheses
+set wildmenu          " Show possible command tab completions
+set ruler             " Show useful information on the command line
 
 colorscheme railscasts
 
