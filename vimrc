@@ -17,11 +17,14 @@ set showcmd		" display incomplete commands
 set showmode    "show current mode down the bottom
 set incsearch		" do incremental searching
 set hlsearch " highlight search
+" Only do case sensitive match on Upper Case
+set smartcase         
 
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
-set noexpandtab
+set expandtab         " Expand tabs to spaces
+set smarttab          " Backspace over expandtab
 set number
 set showbreak=…
 set wrap linebreak nolist
@@ -43,6 +46,11 @@ nmap <D-0> g^
 set visualbell t_vb=
 "turn off needless toolbar on gvim/mvim
 set guioptions-=T
+
+set showcmd           " Show the command you have typed in
+set showmatch         " Show matching brackets or parentheses
+set wildmenu          " Show possible command tab completions
+set ruler             " Show useful information on the command line
 
 colorscheme railscasts
 
