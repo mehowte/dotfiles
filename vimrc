@@ -42,6 +42,25 @@ nmap <D-4> g$
 nmap <D-6> g^
 nmap <D-0> g^
 
+nmap <C-tab> <C-w><C-w>
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-h> <C-w>h
+nmap <C-l> <C-w>l
+nmap <C-Down> <C-w>J
+nmap <C-Up> <C-w>K
+nmap <C-Left> <C-w>H
+nmap <C-Right> <C-w>L
+set splitright
+set nosplitbelow
+
+" make Y consistent with D and C
+nmap Y y$
+
+" NERDCommenter settings
+let NERDCreateDefaultMappings=0
+nmap <D-/> NERDComToggleComment
+
 "disable visual bell
 set visualbell t_vb=
 "turn off needless toolbar on gvim/mvim
@@ -59,6 +78,8 @@ set foldmethod=indent "fold based on indent
 set foldnestmax=3 "deepest fold is 3 levels
 set nofoldenable "dont fold by default
 
+nmap <leader>v :tabedit $MYVIMRC<CR>
+
 syntax on
 
 "Command-T configuration
@@ -68,11 +89,14 @@ let g:CommandTMatchWindowAtTop=1
 "map to CommandT TextMate style finder
 nnoremap <leader>t :CommandT<CR>
 
-nmap <silent> <Leader>p :NERDTreeToggle<CR>
+nmap <silent> <Leader>d :NERDTreeToggle<CR>
 " Only do this part when compiled with support for autocommands.
 " o
 
 if has("autocmd")
+
+  " Source the vimrc file after saving it
+  autocmd bufwritepost .vimrc source  $MYVIMRC
 
   " Enable file type detection.
   " Use the default filetype settings, so that mail gets 'tw' set to 72,
