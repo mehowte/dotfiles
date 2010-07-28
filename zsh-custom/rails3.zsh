@@ -1,0 +1,5 @@
+alias r='bundle exec rails'
+alias rsp='rake spec'
+alias rcuc='rake cucumber'
+alias devlog='tail -f log/development.log'
+alias testlog='tail -f log/test.log'
