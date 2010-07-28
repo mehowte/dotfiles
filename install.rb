@@ -8,6 +8,7 @@ Dir.chdir File.dirname(__FILE__) do
   
   Dir['*'].each do |file|
     next unless File.extname(file).empty?
+    next if File.basename(file) =~ /(README)|(~)/
     target_name = file == 'bin' ? file : ".#{file}"
     target = File.join(home, target_name)
     unless File.exist? target

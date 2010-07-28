@@ -1,0 +1,15 @@
+Usage:
+1. backup your old dotfiles
+2. clone this repository
+3. run following:
+git submodule update --init
+cd vim/bundle/command-t/ruby/command-t
+ruby extconf.rb
+make
+cd ../../../../..
+ruby install.rb
+chsh -s /bin/zsh
+
+4. restart terminal
+5. ???
+6. Profit
