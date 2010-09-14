@@ -24,7 +24,7 @@ function git_init_dropbox_bare(){
 }
 
 function git_add_remote_dropbox(){
-  git add remote dropbox ~/Dropbox/git_private/$1/$2.git 
+  git remote add dropbox ~/Dropbox/git_private/$1/$2.git 
 }
 
 
