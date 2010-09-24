@@ -38,5 +38,5 @@ alias gidw='git_init_dropbox_bare applicake'
 alias gcdp='git_clone_from_dropbox projects'
 alias gcdw='git_clone_from_dropbox applicake'
 
-alias gardp='git_add_remote_dropbox projects'
-alias gardw='git_add_remote_dropbox applicake'
+alias gradp='git_add_remote_dropbox projects'
+alias gradw='git_add_remote_dropbox applicake'
