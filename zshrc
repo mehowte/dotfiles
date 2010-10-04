@@ -25,7 +25,9 @@ source $ZSH/oh-my-zsh.sh
 # Load all of your custom configurations from zsh-custom
 for config_file ($HOME/.zsh-custom/*.zsh) source $config_file
 
-export PATH=/opt/local/bin:/opt/local/sbin:/opt/local/libexec/git-core:/opt/local/lib/postgresql84/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin     
+
+export EDITOR='mvim -f'
                                                                                             
 unsetopt auto_name_dirs
 
