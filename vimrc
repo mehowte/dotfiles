@@ -1,3 +1,5 @@
+filetype off 
+call pathogen#helptags()
 call pathogen#runtime_append_all_bundles() 
 
 " Use Vim settings, rather then Vi settings (much better!).
@@ -27,7 +29,7 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab         " Expand tabs to spaces
 set smarttab          " Backspace over expandtab
-set number
+set relativenumber
 set showbreak=…
 set wrap linebreak nolist
 
