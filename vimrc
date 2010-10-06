@@ -46,6 +46,7 @@ nmap <D-4> g$
 nmap <D-6> g^
 nmap <D-0> g^
 
+
 nmap <C-tab> <C-w><C-w>
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
@@ -61,9 +62,13 @@ set nosplitbelow
 " make Y consistent with D and C
 nmap Y y$
 
+" make gR consistent with D, C and Y
+nmap gR gr$
+
 " NERDCommenter settings
 let NERDCreateDefaultMappings=0
-nmap <D-/> NERDComToggleComment
+nmap <leader>c <plug>NERDCommenterToggle
+
 
 "disable visual bell
 set visualbell t_vb=
@@ -89,11 +94,16 @@ syntax on
 "Command-T configuration
 let g:CommandTMaxHeight=10
 let g:CommandTMatchWindowAtTop=1
+let g:CommandTCancelMap='<C-[>'
+
 
 "map to CommandT TextMate style finder
 nnoremap <leader>t :CommandT<CR>
 
 nmap <silent> <Leader>d :NERDTreeToggle<CR>
+
+
+
 " Only do this part when compiled with support for autocommands.
 " o
 
