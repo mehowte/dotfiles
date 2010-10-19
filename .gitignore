@@ -3,3 +3,4 @@
 .DS_Store
 passenger_config/current_ruby.conf
 passenger_config/passenger_ruby
+vim/**/tags
