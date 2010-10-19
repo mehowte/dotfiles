@@ -37,3 +37,6 @@
 [submodule "vim/bundle/vim-unimpaired"]
 	path = vim/bundle/vim-unimpaired
 	url = git://github.com/tpope/vim-unimpaired.git
+[submodule "vim/bundle/delimitMate"]
+	path = vim/bundle/delimitMate
+	url = git://github.com/Raimondi/delimitMate.git
