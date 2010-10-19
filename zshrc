@@ -25,7 +25,7 @@ source $ZSH/oh-my-zsh.sh
 # Load all of your custom configurations from zsh-custom
 for config_file ($HOME/.zsh-custom/*.zsh) source $config_file
 
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin     
+export PATH=/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin     
 
 export EDITOR='mvim -f'
                                                                                             
