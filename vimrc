@@ -29,10 +29,12 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab         " Expand tabs to spaces
 set smarttab          " Backspace over expandtab
-set relativenumber
 set showbreak=…
 set wrap linebreak nolist
 
+
+set relativenumber
+set colorcolumn=90
 "mapping for command key to map navigation thru display lines instead
 "of just numbered lines
 vmap <D-j> gj
@@ -87,7 +89,8 @@ set foldmethod=indent "fold based on indent
 set foldnestmax=3 "deepest fold is 3 levels
 set nofoldenable "dont fold by default
 
-nmap <leader>v :tabedit $MYVIMRC<CR>
+nmap <leader>ev :tabedit $MYVIMRC<CR>
+nmap <leader>f gg=G``
 
 syntax on
 
@@ -102,7 +105,8 @@ nnoremap <leader>t :CommandT<CR>
 
 nmap <silent> <Leader>d :NERDTreeToggle<CR>
 
-
+" NERDTree config 
+let NERDTreeQuitOnOpen=1
 
 " Only do this part when compiled with support for autocommands.
 " o
@@ -140,19 +144,19 @@ if has("autocmd")
 "snipmate setup
   let g:snippets_dir="~/.vim/snippets"
   source ~/.vim/snippets/support_functions.vim
-  autocmd vimenter * call s:SetupSnippets()
-  function! s:SetupSnippets()
+  "autocmd vimenter * call s:SetupSnippets()
+  "function! s:SetupSnippets()
 
-    "if we're in a rails env then read in the rails snippets
-    if filereadable("./config/environment.rb")
-        call ExtractSnips("~/.vim/snippets/ruby-rails", "ruby")
-        call ExtractSnips("~/.vim/snippets/eruby-rails", "eruby")
-    endif
+    ""if we're in a rails env then read in the rails snippets
+    "if filereadable("./config/environment.rb")
+        "call ExtractSnips("~/.vim/snippets/ruby-rails", "ruby")
+        "call ExtractSnips("~/.vim/snippets/eruby-rails", "eruby")
+    "endif
 
-    call ExtractSnips("~/.vim/snippets/html", "eruby")
-    call ExtractSnips("~/.vim/snippets/html", "xhtml")
-    call ExtractSnips("~/.vim/snippets/html", "php")
-  endfunction
+    "call ExtractSnips("~/.vim/snippets/html", "eruby")
+    "call ExtractSnips("~/.vim/snippets/html", "xhtml")
+    "call ExtractSnips("~/.vim/snippets/html", "php")
+  "endfunction
   
 else
 
