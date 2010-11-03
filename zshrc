@@ -28,6 +28,7 @@ for config_file ($HOME/.zsh-custom/*.zsh) source $config_file
 export PATH=/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin     
 
 export EDITOR='mvim -f'
+export GIT_EDITOR='mvim -f -c"au VimLeave * !open -a Terminal"'
                                                                                             
 unsetopt auto_name_dirs
 
