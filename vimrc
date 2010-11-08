@@ -91,7 +91,7 @@ set nofoldenable "dont fold by default
 
 nmap <leader>ev :tabedit $MYVIMRC<CR>
 nmap <leader>f gg=G``
-
+nmap <leader>s :%s/\<<C-r><C-w>\>/
 syntax on
 
 "Command-T configuration

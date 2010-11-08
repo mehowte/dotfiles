@@ -20,23 +20,22 @@ alias gldc='git pull dropbox $(current_branch)'
 alias gpdc='git push dropbox $(current_branch)'
 
 function git_init_dropbox_bare(){
-  GIT_DIR=~/Dropbox/git_private/$1/$2.git git init --bare 
+  GIT_DIR=~/Dropbox/michal/git_repos/$1/$2.git git init --bare 
 }
 
 function git_add_remote_dropbox(){
-  git remote add dropbox ~/Dropbox/git_private/$1/$2.git 
+  git remote add dropbox ~/Dropbox/michal/git_repos/$1/$2.git 
 }
-
 
 function git_clone_from_dropbox(){
-  git clone --origin dropbox ~/Dropbox/git_private/$1/$2.git
+  git clone --origin dropbox ~/Dropbox/michal/git_repos/$1/$2.git
 }
 
-alias gidp='git_init_dropbox_bare projects'
-alias gidw='git_init_dropbox_bare applicake'
+alias gidp='git_init_dropbox_bare private'
+alias gidw='git_init_dropbox_bare work'
 
-alias gcdp='git_clone_from_dropbox projects'
-alias gcdw='git_clone_from_dropbox applicake'
+alias gcdp='git_clone_from_dropbox private'
+alias gcdw='git_clone_from_dropbox work'
 
-alias gradp='git_add_remote_dropbox projects'
-alias gradw='git_add_remote_dropbox applicake'
+alias gradp='git_add_remote_dropbox private'
+alias gradw='git_add_remote_dropbox work'
