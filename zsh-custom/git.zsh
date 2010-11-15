@@ -1,3 +1,5 @@
+function git(){hub "$@"}
+
 alias g='git'
 alias gst='git status'
 alias gci='git commit'

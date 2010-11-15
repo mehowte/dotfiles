@@ -84,6 +84,8 @@ set ruler             " Show useful information on the command line
 
 colorscheme railscasts
 
+set scrolloff=3  " screen moves when cursor goes less than 3 lines from top or bottom
+
 "folding settings
 set foldmethod=indent "fold based on indent
 set foldnestmax=3 "deepest fold is 3 levels
