@@ -32,4 +32,4 @@ export GIT_EDITOR='mvim -f -c"au VimLeave * !open -a Terminal"'
                                                                                             
 unsetopt auto_name_dirs
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
