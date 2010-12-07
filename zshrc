@@ -25,11 +25,11 @@ source $ZSH/oh-my-zsh.sh
 # Load all of your custom configurations from zsh-custom
 for config_file ($HOME/.zsh-custom/*.zsh) source $config_file
 
-export PATH=/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin     
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
 
-export EDITOR='mvim -f'
+export EDITOR='mvim -f -c"au VimLeave * !open -a Terminal"'
 export GIT_EDITOR='mvim -f -c"au VimLeave * !open -a Terminal"'
                                                                                             
 unsetopt auto_name_dirs
 
-#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
