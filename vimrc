@@ -96,6 +96,10 @@ nmap <leader>f gg=G``
 nmap <leader>s :%s/\<<C-r><C-w>\>/
 syntax on
 
+nmap <leader>g1 :diffget1<CR>
+nmap <leader>g2 :diffget2<CR>
+nmap <leader>g3 :diffget3<CR>
+
 "Command-T configuration
 let g:CommandTMaxHeight=10
 let g:CommandTMatchWindowAtTop=1
