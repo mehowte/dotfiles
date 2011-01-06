@@ -32,12 +32,14 @@ function git_add_remote_dropbox(){
 function git_clone_from_dropbox(){
   git clone --origin dropbox ~/Dropbox/michal/git_repos/$1/$2.git
 }
-
 alias gidp='git_init_dropbox_bare private'
+alias gids='git_init_dropbox_bare sandbox'
 alias gidw='git_init_dropbox_bare work'
 
 alias gcdp='git_clone_from_dropbox private'
+alias gcds='git_clone_from_dropbox sandbox'
 alias gcdw='git_clone_from_dropbox work'
 
 alias gradp='git_add_remote_dropbox private'
+alias grads='git_add_remote_dropbox sandbox'
 alias gradw='git_add_remote_dropbox work'
