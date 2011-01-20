@@ -55,12 +55,6 @@
 [submodule "vim/bundle/vim-abolish"]
 	path = vim/bundle/vim-abolish
 	url = git://github.com/tpope/vim-abolish.git
-[submodule "vim/bundle/vim-layout.vim"]
-	path = vim/bundle/vim-layout.vim
-	url = git://github.com/svenfuchs/vim-layout.git
-[submodule "vim/bundle/vim-tree.vim"]
-	path = vim/bundle/vim-tree.vim
-	url = git://github.com/svenfuchs/vim-tree.git
 [submodule "vim/bundle/tabular"]
 	path = vim/bundle/tabular
 	url = git://github.com/godlygeek/tabular.git

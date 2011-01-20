@@ -1,4 +1,4 @@
-function git(){hub "$@"}
+#function git(){hub "$@"}
 
 alias g='git'
 alias gst='git status'
