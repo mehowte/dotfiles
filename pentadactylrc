@@ -1,0 +1,2 @@
+set hintkeys=asdfghjkl;
+highlight -a Hint text-transform: uppercase;
