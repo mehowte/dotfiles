@@ -49,9 +49,6 @@
 [submodule "vim/bundle/vim-quickrun"]
 	path = vim/bundle/vim-quickrun
 	url = git://github.com/thinca/vim-quickrun
-[submodule "vim/bundle/unite.vim"]
-	path = vim/bundle/unite.vim
-	url = git://github.com/Shougo/unite.vim.git
 [submodule "vim/bundle/vim-abolish"]
 	path = vim/bundle/vim-abolish
 	url = git://github.com/tpope/vim-abolish.git
