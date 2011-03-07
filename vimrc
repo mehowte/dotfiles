@@ -173,37 +173,6 @@ else
 endif " has("autocmd")
 
 
-
-
-" test
-"
-
-let s:unite_source = {
-      \ 'name': 'evalruby',
-      \ 'is_volatile': 1,
-      \ 'required_pattern_length': 1,
-      \ 'max_candidates': 30,
-      \ }
-
-function! s:unite_source.gather_candidates(args, context)
-  if a:context.input[-1:] == '.'
-    let methods = split(
-          \ unite#util#system(printf('ruby -e "puts %s.methods"', a:context.input[:-2])),
-          \ "\n")
-    call map(methods, printf("'%s' . v:val", a:context.input))
-  else
-    let methods = [a:context.input]
-  endif
-  return map(methods, '{
-        \ "word": v:val,
-        \ "source": "evalruby",
-        \ "kind": "command",
-        \ "action__command": printf("!ruby -e \"p %s\"", v:val),
-        \ }')
-endfunction
-
-call unite#define_source(s:unite_source)
-
 " experimental cucumber table aligment
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 
