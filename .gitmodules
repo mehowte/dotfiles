@@ -55,3 +55,18 @@
 [submodule "vim/bundle/tabular"]
 	path = vim/bundle/tabular
 	url = git://github.com/godlygeek/tabular.git
+[submodule "vim/bundle/vim-ruby-refactoring"]
+	path = vim/bundle/vim-ruby-refactoring
+	url = git://github.com/ecomba/vim-ruby-refactoring.git
+[submodule "vim/bundle/vim-matchit"]
+	path = vim/bundle/vim-matchit
+	url = git://github.com/edsono/vim-matchit.git
+[submodule "vim/bundle/vim-coffe-script"]
+	path = vim/bundle/vim-coffe-script
+	url = git://github.com/kchmck/vim-coffee-script.git
+[submodule "vim/bundle/vim-blockle"]
+	path = vim/bundle/vim-blockle
+	url = git://github.com/jgdavey/vim-blockle.git
+[submodule "vim/bundle/vim-colors-solarized"]
+	path = vim/bundle/vim-colors-solarized
+	url = git://github.com/altercation/vim-colors-solarized.git

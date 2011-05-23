@@ -34,6 +34,8 @@ set smarttab          " Backspace over expandtab
 set showbreak=…
 set wrap linebreak nolist
 
+nmap <leader>st :set tabstop=2 softtabstop=2 shiftwidth=2 expandtab <CR>
+nmap <leader>ht :set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab <CR>
 
 set relativenumber
 set colorcolumn=90
@@ -73,6 +75,7 @@ nmap gR gr$
 let NERDCreateDefaultMappings=0
 nmap <leader>c <plug>NERDCommenterToggle
 
+let g:quickrun_no_default_key_mappings=1
 
 "disable visual bell
 set visualbell t_vb=

@@ -1,11 +1,16 @@
 require 'rubygems'
 require 'wirble'
-require 'hirb'
-require 'pp'
-
 Wirble.init
 Wirble.colorize
-Hirb.enable
+
+
+require 'looksee'
+Looksee.default_width = 160
+
+require 'hirb'
+#Hirb.enable
+require 'pp'
+
 
 
 if ENV.include?('RAILS_ENV') && !Object.const_defined?('RAILS_DEFAULT_LOGGER')
