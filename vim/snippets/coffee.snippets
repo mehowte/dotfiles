@@ -1,0 +1,51 @@
+snippet cla
+	class ${1:`Snippet_RubyClassNameFromFilename()`}
+
+snippet mod
+	class ${1:`Snippet_RubyClassNameFromFilename()`} extends Backbone.Model
+		${2}	
+
+snippet con
+	class ${1:`Snippet_RubyClassNameFromFilename()`} extends Backbone.Controller
+		${2}	
+
+snippet vie
+	class ${1:`Snippet_RubyClassNameFromFilename()`} extends Backbone.View
+		${2}	
+
+snippet ini
+	initialize: ->
+		${1}
+
+snippet inip
+	initialize: (${1}) ->
+		${2}
+
+snippet def
+	${1:functionName}: ->
+		${2}
+
+snippet defb
+	${1:functionName}: =>
+		${2}
+
+snippet defp
+	${1:functionName}: (${2}) ->
+		${3}
+
+snippet defpb
+	${1:functionName}: (${2}) =>
+		${3}
+
+snippet des
+	describe "${1}", ->
+		${2}
+
+snippet it
+	it "should ${1}", ->
+		${2}
+
+snippet exe
+	expect(${1:subject}${2})
+		.toEqual ${3}
+

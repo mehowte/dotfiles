@@ -1,0 +1,93 @@
+#! /usr/bin/ruby
+
+# This script is based on the one found in the Powder gem,
+# but without Thor dependency. I also removed install and
+# uninstall commands, since they aren't part of the workflow.
+# Check https://github.com/Rodreegez/powder/blob/master/bin/pow
+# for the original script.
+#
+# ====== Installation ======
+# Save this gist in your scripts folder.
+# $ chmod +x /<SCRIPT_FOLDER>/pow
+# In your .bashrc or equivalent:
+# alias pow='/<SCRIPT_FOLDER>/pow'
+# ==========================
+
+require 'fileutils'
+
+POWPATH = "/Users/#{`whoami`.chomp}/.pow"
+
+def main
+  options = %w(link list remove restart help)
+
+  if ARGV.empty?
+    link
+  else
+    cmd = options.grep(/^#{ARGV.first}/)
+    if cmd.empty?
+      $stdout.puts "Command #{ARGV.first} not found."
+      help
+    elsif cmd.count > 1
+      $stdout.puts "Command #{ARGV.first} is ambiguous [#{cmd.join(', ')}]"
+    else
+      begin
+        send(cmd.first, *ARGV[1..-1])
+      rescue ArgumentError => ae
+        $stdout.puts ae.message.capitalize
+      end
+    end
+  end
+end
+
+def link(name=nil)
+  return unless is_powable?
+  current_path = %x{pwd}.chomp
+  symink_path = "#{POWPATH}/#{name || File.basename(current_path)}"
+  FileUtils.ln_s(current_path, symink_path) unless File.exists?(symink_path)
+end
+
+def restart
+  return unless is_powable?
+  FileUtils.mkdir_p('tmp')
+  %x{touch tmp/restart.txt}
+end
+
+def list
+  Dir[POWPATH + "/*"].map { |a| $stdout.puts File.basename(a) }
+end
+
+def remove(name=nil)
+  return unless is_powable?
+  FileUtils.rm POWPATH + '/' + (name || File.basename(%x{pwd}.chomp))
+end
+
+def help
+  $stdout.puts <<-EOS
+Pow is a zero-config Rack server for Mac OS X.
+
+Usage:
+pow link link the current dir_name to ~/.pow/dir_name
+pow link bacon link the current dir to ~/.pow/bacon
+pow list list all the current apps linked in ~/.pow
+pow remove unlink current_dir
+pow remove bacon unlink bacon
+pow restart restart the current app
+pow help show this help
+EOS
+end
+
+private
+
+def is_powable?
+  if File.exists?('config.ru') || File.exists?('public/index.html')
+    true
+  else
+    $stdout.puts "This does not appear to be a rack app as there is no config.ru."
+    $stdout.puts "If you are in a Rails 2 application, try https://gist.github.com/909308"
+    $stdout.puts "Pow can also host static apps if there is an index.html in public/"
+    false
+  end
+end
+
+main #Start
+

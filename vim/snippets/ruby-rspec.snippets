@@ -1,0 +1,52 @@
+snippet des
+	describe `Snippet_RubyClassNameFromSpecFilename()` do
+		${1}
+	end
+
+snippet des.
+	describe ".${1:method_name}" do
+		${2}
+	end
+
+
+snippet des#
+	describe "#${1:method_name}" do
+		${2}
+	end
+
+snippet con
+	context "${1}" do
+		${2}
+	end
+
+snippet sub
+	subject { }
+
+snippet let
+	let(:${1}) { ${2} }
+
+snippet it
+	it "${1}" do
+		${2}
+	end
+
+snippet its
+	its(:${1}) { ${2} }
+
+snippet spec
+	specify { ${1} }
+
+snippet ex
+	expect { ${1} }.${2}
+	
+snippet tre
+	to raise_error(${1})
+
+snippet ntre
+	not_to raise_error(${1})
+
+snippet tch
+	to change{ ${1} }${2}
+
+snippet ntch
+	to change{ ${1} }${2}

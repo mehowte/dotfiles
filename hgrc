@@ -1,0 +1,4 @@
+[extensions]
+hgext.bookmarks =
+hggit = 
+

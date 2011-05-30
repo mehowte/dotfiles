@@ -97,7 +97,7 @@ set foldnestmax=3 "deepest fold is 3 levels
 set nofoldenable "dont fold by default
 
 nmap <leader>ev :tabedit $MYVIMRC<CR>
-nmap <leader>f gg=G``
+nmap <leader>f mmgg=G`m
 nmap <leader>s :%s/\<<C-r><C-w>\>/
 syntax on
 
