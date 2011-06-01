@@ -2,6 +2,10 @@
 Thumbs.db
 *~
 *.swp
+*.swo
 .sass-cache
 .rvmrc
 tmp/restart.txt
+doc/tags
+doc/tags-ja
+doc/tags-en
