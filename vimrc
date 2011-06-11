@@ -151,24 +151,6 @@ if has("autocmd")
     \ endif
 
   augroup END
-
-"snipmate setup
-  let g:snippets_dir="~/.vim/snippets"
-  source ~/.vim/snippets/support_functions.vim
-  "autocmd vimenter * call s:SetupSnippets()
-  "function! s:SetupSnippets()
-
-    ""if we're in a rails env then read in the rails snippets
-    "if filereadable("./config/environment.rb")
-        "call ExtractSnips("~/.vim/snippets/ruby-rails", "ruby")
-        "call ExtractSnips("~/.vim/snippets/eruby-rails", "eruby")
-    "endif
-
-    "call ExtractSnips("~/.vim/snippets/html", "eruby")
-    "call ExtractSnips("~/.vim/snippets/html", "xhtml")
-    "call ExtractSnips("~/.vim/snippets/html", "php")
-  "endfunction
-  
 else
 
   set autoindent " always set autoindenting on
