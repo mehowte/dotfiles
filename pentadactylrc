@@ -1,6 +1,18 @@
 set hintkeys=asdfghjkl;
 highlight -a Hint text-transform: uppercase;
-" :autocmd hashChange (https?://)?(mail|www)\.google\.com/mail/u/0/?shva=1#(inbox|chats|all|starred|spam|trash|sent|drafts|(label/[^/]+)) -js modes.set(modes.PASS_THROUGH)
-:autocmd LocationChange (https?://)?(mail|www)\.google\.com/mail -js modes.set(modes.PASS_THROUGH)
-:autocmd LocationChange (https?://)?(www)?\.google\.(com|pl)/reader/view/ -js modes.set(modes.PASS_THROUGH)
-:autocmd LocationChange (https?://)?(www\.)?twitter\.com/.* -js modes.set(modes.PASS_THROUGH)
+
+" @section Passkeys {{{
+" ******************************************************************************
+set passkeys=
+" DuckDuckGo
+set passkeys+="https://duckduckgo\.com/":jkv
+
+" Google
+set passkeys+="(https?://)?(mail|www)\.google\.(com|pl)/(mail|reader/view)":jkg/?.nrmANPOpo
+
+" Twitter
+set passkeys+="https://twitter\.com/":jkg/?.nrm
+" }}}
+
+
+

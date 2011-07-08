@@ -3,10 +3,13 @@
 alias g='git'
 alias gst='git status'
 alias gci='git commit'
+alias gciam='git commit -am'
 alias gco='git checkout'
 alias gl='git pull --rebase'
 alias gp='git push'
 alias gmt='git mergetool -t vimdiff'
+alias grhh='git reset --hard HEAD'
+alias gcfd='git clean -fd'
 
 alias glo='gl origin'
 alias gpo='gp origin'
