@@ -82,3 +82,6 @@
 [submodule "vim/bundle/jshint.vim"]
 	path = vim/bundle/jshint.vim
 	url = git://github.com/walm/jshint.vim.git
+[submodule "vim/bundle/simplefold"]
+	path = vim/bundle/simplefold
+	url = git://github.com/vim-scripts/simplefold.git

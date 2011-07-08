@@ -172,3 +172,5 @@ function! s:align()
   endif
 endfunction
 
+" simplefold
+map <unique> <silent> <Leader>z <Plug>SimpleFold_Foldsearch
