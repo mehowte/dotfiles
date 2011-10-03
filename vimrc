@@ -1,4 +1,6 @@
 set shell=/bin/sh
+set dir=/tmp
+set backupdir=/tmp
 
 filetype off 
 call pathogen#helptags()
