@@ -6,3 +6,7 @@ alias cdm='cd ~/code/github/mehowte'
 alias cdd='cd ~/code/github/mehowte/dotfiles'
 
 alias mvd='cdd && mvim'
+
+setopt auto_cd
+cdpath=(~/code/work ~/code/private ~/code/spikes ~/code/github/mehowte)
+
