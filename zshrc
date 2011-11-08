@@ -27,7 +27,7 @@ for config_file ($HOME/.zsh-custom/*.zsh) source $config_file
 
 export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
 
-export NODE_PATH=/usr/local/lib/node:NODE_PATH
+export NODE_PATH=/usr/local/lib/node_modules/
                                                                                             
 unsetopt auto_name_dirs
 

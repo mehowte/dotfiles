@@ -1,3 +1,4 @@
+" ============ Bootstrap ===============
 set shell=/bin/sh
 set dir=/tmp
 set backupdir=/tmp
@@ -13,76 +14,85 @@ set nocompatible
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
-else
-  set backup		" keep a backup file
-endif
 " large history
 set history=500
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set showmode    "show current mode down the bottom
-set incsearch		" do incremental searching
-set hlsearch " highlight search
-" Only do case sensitive match on Upper Case
-set smartcase         
+set ruler	" show the cursor position all the time
+set showcmd	" display normal mode commands
+set showmode  "show current mode down the bottom
 
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
+set incsearch	" do incremental searching
+set hlsearch " highlight search
+set smartcase " Only do case sensitive match on Upper Case
+
+" indentation options
+set tabstop=2         " How much space does a tab equals to
+set softtabstop=2     " How many paces to insert/delete while using tab or delete  
+set shiftwidth=2      " How many spaces to move while autoindenting, << and >>
 set expandtab         " Expand tabs to spaces
 set smarttab          " Backspace over expandtab
+
 set showbreak=…
-set wrap linebreak nolist
+set nowrap            " don't wrap lines 
+set linebreak         " don't break words when wrapping lines 
+set nolist            " don't show nonprintable characters
 
-nmap <leader>st :set tabstop=2 softtabstop=2 shiftwidth=2 expandtab <CR>
-nmap <leader>ht :set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab <CR>
+set relativenumber    " show line numbers relative to cursor
+set numberwidth=3     " thin linenumbers column
+set colorcolumn=90    " display colored column to see maximum chars per line allowed
 
-set relativenumber
-set colorcolumn=90
-"mapping for command key to map navigation thru display lines instead
-"of just numbered lines
-vmap <D-j> gj
-vmap <D-k> gk
-vmap <D-4> g$
-vmap <D-6> g^
-vmap <D-0> g^
-nmap <D-j> gj
-nmap <D-k> gk
-nmap <D-4> g$
-nmap <D-6> g^
-nmap <D-0> g^
-
-
-nmap <C-tab> <C-w><C-w>
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
-nmap <C-h> <C-w>h
-nmap <C-l> <C-w>l
-nmap <C-Down> <C-w>J
-nmap <C-Up> <C-w>K
-nmap <C-Left> <C-w>H
-nmap <C-Right> <C-w>L
-set splitright
-set nosplitbelow
-
+" sane movement between visible lines
+function! ScreenMovement(movement)
+   if &wrap
+      return "g" . a:movement
+   else
+      return a:movement
+   endif
+endfunction
+onoremap <silent> <expr> j ScreenMovement("j")
+onoremap <silent> <expr> k ScreenMovement("k")
+onoremap <silent> <expr> 0 ScreenMovement("0")
+onoremap <silent> <expr> ^ ScreenMovement("^")
+onoremap <silent> <expr> $ ScreenMovement("$")
+nnoremap <silent> <expr> j ScreenMovement("j")
+nnoremap <silent> <expr> k ScreenMovement("k")
+nnoremap <silent> <expr> 0 ScreenMovement("0")
+nnoremap <silent> <expr> ^ ScreenMovement("^")
+nnoremap <silent> <expr> $ ScreenMovement("$")
 " make Y consistent with D and C
-nmap Y y$
+nnoremap Y y$
 
 " make gR consistent with D, C and Y
 nmap gR gr$
 
+" sweet movement between splits
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-w><C-j> <C-w>J
+nnoremap <C-w><C-k> <C-w>K
+nnoremap <C-w><C-h> <C-w>H
+nnoremap <C-w><C-l> <C-w>L
+
+set splitright         " move window right to current one on :vsplit
+set nosplitbelow       " move window above current one on :split
+
+" neocomplcache settings
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_snippets_dir = '$HOME/.vim/snippets'
+imap  <silent><expr><tab>  neocomplcache#sources#snippets_complete#expandable() ? "\<plug>(neocomplcache_snippets_expand)" : (pumvisible() ? "\<c-e>" : "\<tab>")
+smap  <tab>  <right><plug>(neocomplcache_snippets_jump) 
+inoremap <expr><c-e>     neocomplcache#complete_common_string()
+
+
 " NERDCommenter settings
 let NERDCreateDefaultMappings=0
-nmap <leader>c <plug>NERDCommenterToggle
+nnoremap <leader>c <plug>NERDCommenterToggle
 
 let g:quickrun_no_default_key_mappings=1
 
-"disable visual bell
-set visualbell t_vb=
-"turn off needless toolbar on gvim/mvim
-set guioptions-=T
+set visualbell t_vb=  " disable visual bell
+set guioptions-=T     " turn off needless toolbar on gvim/mvim
 
 set showcmd           " Show the command you have typed in
 set showmatch         " Show matching brackets or parentheses
@@ -91,21 +101,21 @@ set ruler             " Show useful information on the command line
 
 colorscheme railscasts
 
-set scrolloff=3  " screen moves when cursor goes less than 3 lines from top or bottom
+set scrolloff=3       " screen moves when cursor goes less than 3 lines from top or bottom
 
 "folding settings
 set foldmethod=indent "fold based on indent
 set foldnestmax=3 "deepest fold is 3 levels
 set nofoldenable "dont fold by default
 
-nmap <leader>ev :tabedit $MYVIMRC<CR>
-nmap <leader>f mmgg=G`m
-nmap <leader>s :%s/\<<C-r><C-w>\>/
+nnoremap <leader>ev :tabedit $MYVIMRC<CR>
+nnoremap <leader>f mmgg=G`m
+nnoremap <leader>s :%s/\<<C-r><C-w>\>/
 syntax on
 
-nmap <leader>g1 :diffget1<CR>
-nmap <leader>g2 :diffget2<CR>
-nmap <leader>g3 :diffget3<CR>
+nnoremap <leader>g1 :diffget1<CR>
+nnoremap <leader>g2 :diffget2<CR>
+nnoremap <leader>g3 :diffget3<CR>
 
 "Command-T configuration
 let g:CommandTMaxHeight=10
@@ -116,52 +126,43 @@ let g:CommandTCancelMap='<C-[>'
 "map to CommandT TextMate style finder
 nnoremap <leader>t :CommandT<CR>
 
-nmap <silent> <Leader>d :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>d :NERDTreeToggle<CR>
 
 " NERDTree config 
 let NERDTreeQuitOnOpen=1
 
-" Only do this part when compiled with support for autocommands.
-" o
-
 if has("autocmd")
-
-  " Source the vimrc file after saving it
-  autocmd bufwritepost .vimrc source  $MYVIMRC
-
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
-
-  " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
-  au!
+    autocmd!
 
-  " For all text files set 'textwidth' to 78 E.
-  autocmd FileType text setlocal textwidth=78
+    " Source the vimrc file after saving it
+    autocmd bufwritepost .vimrc source  $MYVIMRC
 
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \ exe "normal! g`\"" |
-    \ endif
+    " set wrappring in html files
+    autocmd BufNewFile,BufRead *.html* setlocal wrap
+
+    " Enable file type detection.  Use the default filetype settings, so that
+    " mail gets 'tw' set to 72, 'cindent' is on in C files, etc.  Also load
+    " indent files, to automatically do language-dependent indenting.
+    filetype plugin indent on
+
+
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).  Also don't do it when the mark
+    " is in the first line, that is the default position when opening a file.
+    autocmd BufReadPost *
+      \ if line("'\"") > 1 && line("'\"") <= line("$") |
+      \ exe "normal! g`\"" |
+      \ endif
 
   augroup END
 else
 
   set autoindent " always set autoindenting on
 
-endif " has("autocmd")
+endif 
 
-
-" experimental cucumber table aligment
-inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 
 function! s:align()
   let p = '^\s*|\s.*\s|\s*$'
@@ -174,5 +175,8 @@ function! s:align()
   endif
 endfunction
 
+" experimental cucumber table aligment
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+
 " simplefold
-map <unique> <silent> <Leader>z <Plug>SimpleFold_Foldsearch
+nnoremap <silent> <Leader>z <Plug>SimpleFold_Foldsearch
