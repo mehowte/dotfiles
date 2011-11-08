@@ -7,6 +7,9 @@ filetype off
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles() 
 
+" delimit mate options
+let delimitMate_expand_space = 1
+
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
