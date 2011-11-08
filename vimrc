@@ -3,16 +3,55 @@ set shell=/bin/sh
 set dir=/tmp
 set backupdir=/tmp
 
+" Use Vim settings, rather then Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+set nocompatible
 filetype off 
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles() 
+set rtp+=~/.vim/bundle/vundle/
+ call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-rails'
+Bundle 'ReplaceWithRegister'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-repeat'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'tpope/vim-cucumber'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-haml'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'edsono/vim-matchit'
+Bundle 'ecomba/vim-ruby-refactoring'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'wincent/Command-T'
+Bundle 'mileszs/ack.vim'
+Bundle 'Raimondi/delimitMate'
+Bundle 'jgdavey/vim-blockle'
+Bundle 'thinca/vim-quickrun'
+Bundle 'vim-scripts/simplefold'
+Bundle 'godlygeek/tabular'
+Bundle 'altercation/vim-colors-solarized'
+
+" vim-handlebars
+" vim-markdown-preview
+" vimorganizer
+" gist-vim              
+" tagbar              
+" neocomplcache         
+" jshint.vim  
+
+filetype plugin indent on
 
 " delimit mate options
 let delimitMate_expand_space = 1
 
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start

@@ -4,5 +4,6 @@
 passenger_config/current_ruby.conf
 passenger_config/passenger_ruby
 vim/.netrwhist
+vim/bundle
 .swo
 pentadactyl/info/default/command-history
