@@ -13,31 +13,59 @@ set rtp+=~/.vim/bundle/vundle/
 " let Vundle manage Vundle
 " required! 
 Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-rails'
+
+" normal mode editing extensions
 Bundle 'ReplaceWithRegister'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
+
+
+" general development
+Bundle 'godlygeek/tabular'
+Bundle 'vim-scripts/simplefold'
+Bundle 'Raimondi/delimitMate'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'edsono/vim-matchit'
+Bundle 'tpope/vim-abolish'
+Bundle 'Shougo/vimproc'
+Bundle 'thinca/vim-quickrun'
+Bundle 'ujihisa/quicklearn' 
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'tpope/vim-fugitive'
+
+" snippets with dependencies
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+Bundle 'honza/snipmate-snippets'
+Bundle 'garbas/vim-snipmate'
+
+
+" ruby development
+Bundle 'ecomba/vim-ruby-refactoring'
+Bundle 'tpope/vim-rails'
+Bundle 'jgdavey/vim-blockle'
+Bundle 'tpope/vim-endwise'
+
+
+" file navigation
+Bundle 'scrooloose/nerdtree'
+Bundle 'wincent/Command-T'
+Bundle 'mileszs/ack.vim'
+
+
+" colorschemes
+Bundle 'altercation/vim-colors-solarized'
+
+" filetype plugins
+Bundle 'tpope/vim-haml'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-cucumber'
 Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-abolish'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-haml'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'edsono/vim-matchit'
-Bundle 'ecomba/vim-ruby-refactoring'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'wincent/Command-T'
-Bundle 'mileszs/ack.vim'
-Bundle 'Raimondi/delimitMate'
-Bundle 'jgdavey/vim-blockle'
-Bundle 'thinca/vim-quickrun'
-Bundle 'vim-scripts/simplefold'
-Bundle 'godlygeek/tabular'
-Bundle 'altercation/vim-colors-solarized'
+
+"unite
+Bundle 'unite.vim'
+Bundle 'unite-gem'
+Bundle 'unite-locate'
 
 " vim-handlebars
 " vim-markdown-preview
@@ -52,6 +80,15 @@ filetype plugin indent on
 " delimit mate options
 let delimitMate_expand_space = 1
 
+" vim-ruby options
+" let g:rubycomplete_buffer_loading = 1
+" let g:rubycomplete_classes_in_global = 1
+" let g:rubycomplete_rails = 1
+let ruby_operators = 1
+" let ruby_space_errors = 1
+
+" coffee-script options
+let coffee_compile_vert = 1
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -117,21 +154,25 @@ nnoremap <C-w><C-h> <C-w>H
 nnoremap <C-w><C-l> <C-w>L
 
 set splitright         " move window right to current one on :vsplit
-set nosplitbelow       " move window above current one on :split
+set splitbelow       " move window above current one on :split
 
 " neocomplcache settings
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_snippets_dir = '$HOME/.vim/snippets'
-imap  <silent><expr><tab>  neocomplcache#sources#snippets_complete#expandable() ? "\<plug>(neocomplcache_snippets_expand)" : (pumvisible() ? "\<c-e>" : "\<tab>")
-smap  <tab>  <right><plug>(neocomplcache_snippets_jump) 
-inoremap <expr><c-e>     neocomplcache#complete_common_string()
+" let g:neocomplcache_enable_at_startup = 1
+" let g:neocomplcache_snippets_dir = '$HOME/.vim/snippets'
+" imap  <silent><expr><tab>  neocomplcache#sources#snippets_complete#expandable() ? "\<plug>(neocomplcache_snippets_expand)" : (pumvisible() ? "\<c-e>" : "\<tab>")
+" smap  <tab>  <right><plug>(neocomplcache_snippets_jump) 
+" inoremap <expr><c-e>     neocomplcache#complete_common_string()
 
 
 " NERDCommenter settings
 let NERDCreateDefaultMappings=0
-nnoremap <leader>c <plug>NERDCommenterToggle
+nmap <leader>c <plug>NERDCommenterToggle
+vmap <leader>c <plug>NERDCommenterToggle
 
+" quickrun settings
 let g:quickrun_no_default_key_mappings=1
+nnoremap <leader>qr :QuickRun -mode n<CR>
+vnoremap <leader>qr :QuickRun -mode v<CR>
 
 set visualbell t_vb=  " disable visual bell
 set guioptions-=T     " turn off needless toolbar on gvim/mvim
@@ -141,7 +182,8 @@ set showmatch         " Show matching brackets or parentheses
 set wildmenu          " Show possible command tab completions
 set ruler             " Show useful information on the command line
 
-colorscheme railscasts
+colorscheme solarized
+:set guifont=Monaco:h15
 
 set scrolloff=3       " screen moves when cursor goes less than 3 lines from top or bottom
 
@@ -160,18 +202,16 @@ nnoremap <leader>g2 :diffget2<CR>
 nnoremap <leader>g3 :diffget3<CR>
 
 "Command-T configuration
+nnoremap <leader>t :CommandT<CR>
 let g:CommandTMaxHeight=10
-let g:CommandTMatchWindowAtTop=1
+let g:CommandTMatchWindowReverse=1
 let g:CommandTCancelMap='<C-[>'
 
-
-"map to CommandT TextMate style finder
-nnoremap <leader>t :CommandT<CR>
-
-nnoremap <silent> <Leader>d :NERDTreeToggle<CR>
-
 " NERDTree config 
+nnoremap <Leader>d :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen=1
+let NERDTreeMapOpenSplit='s'
+let NERDTreeMapOpenVSplit='v'
 
 if has("autocmd")
   augroup vimrcEx
