@@ -1,4 +1,4 @@
-" ============ Bootstrap ===============
+" Bootstrap {{{
 set shell=/bin/sh
 set dir=/tmp
 set backupdir=/tmp
@@ -6,6 +6,10 @@ set backupdir=/tmp
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
+"}}}
+
+
+" Bundled plugins {{{
 filetype off 
 set rtp+=~/.vim/bundle/vundle/
  call vundle#rc()
@@ -18,7 +22,7 @@ Bundle 'gmarik/vundle'
 Bundle 'ReplaceWithRegister'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
-
+Bundle 'Lokaltog/vim-easymotion'
 
 " general development
 Bundle 'godlygeek/tabular'
@@ -32,12 +36,14 @@ Bundle 'thinca/vim-quickrun'
 Bundle 'ujihisa/quicklearn' 
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-fugitive'
+Bundle 'scrooloose/syntastic'
 
 " snippets with dependencies
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 Bundle 'honza/snipmate-snippets'
 Bundle 'garbas/vim-snipmate'
+Bundle 'mattn/zencoding-vim'
 
 
 " ruby development
@@ -77,19 +83,33 @@ Bundle 'unite-locate'
 
 filetype plugin indent on
 
-" delimit mate options
-let delimitMate_expand_space = 1
+"}}}
 
-" vim-ruby options
+" statusline {{{
+"set statusline=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+" }}}
+
+" delimit mate options {{{
+let delimitMate_expand_space = 1
+" }}}
+
+" vim-ruby options {{{
 " let g:rubycomplete_buffer_loading = 1
 " let g:rubycomplete_classes_in_global = 1
 " let g:rubycomplete_rails = 1
 let ruby_operators = 1
 " let ruby_space_errors = 1
+" }}}
 
-" coffee-script options
+" coffee-script options {{{
 let coffee_compile_vert = 1
+" }}}
 
+" zencoding options {{{
+  let g:user_zen_leader_key = '<c-j>'
+" }}}
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
@@ -119,6 +139,7 @@ set relativenumber    " show line numbers relative to cursor
 set numberwidth=3     " thin linenumbers column
 set colorcolumn=90    " display colored column to see maximum chars per line allowed
 
+" Movement options {{{
 " sane movement between visible lines
 function! ScreenMovement(movement)
    if &wrap
@@ -142,8 +163,9 @@ nnoremap Y y$
 
 " make gR consistent with D, C and Y
 nmap gR gr$
+" }}}
 
-" sweet movement between splits
+" sweet movement between splits {{{
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
@@ -155,24 +177,27 @@ nnoremap <C-w><C-l> <C-w>L
 
 set splitright         " move window right to current one on :vsplit
 set splitbelow       " move window above current one on :split
+" }}}
 
-" neocomplcache settings
+" neocomplcache settings {{{
 " let g:neocomplcache_enable_at_startup = 1
 " let g:neocomplcache_snippets_dir = '$HOME/.vim/snippets'
 " imap  <silent><expr><tab>  neocomplcache#sources#snippets_complete#expandable() ? "\<plug>(neocomplcache_snippets_expand)" : (pumvisible() ? "\<c-e>" : "\<tab>")
 " smap  <tab>  <right><plug>(neocomplcache_snippets_jump) 
 " inoremap <expr><c-e>     neocomplcache#complete_common_string()
+" }}}
 
-
-" NERDCommenter settings
+" NERDCommenter settings {{{
 let NERDCreateDefaultMappings=0
 nmap <leader>c <plug>NERDCommenterToggle
 vmap <leader>c <plug>NERDCommenterToggle
+" }}}
 
-" quickrun settings
+" quickrun settings {{{
 let g:quickrun_no_default_key_mappings=1
 nnoremap <leader>qr :QuickRun -mode n<CR>
 vnoremap <leader>qr :QuickRun -mode v<CR>
+" }}}
 
 set visualbell t_vb=  " disable visual bell
 set guioptions-=T     " turn off needless toolbar on gvim/mvim
@@ -201,21 +226,26 @@ nnoremap <leader>g1 :diffget1<CR>
 nnoremap <leader>g2 :diffget2<CR>
 nnoremap <leader>g3 :diffget3<CR>
 
-"Command-T configuration
+"Command-T configuration {{{
 nnoremap <leader>t :CommandT<CR>
 let g:CommandTMaxHeight=10
 let g:CommandTMatchWindowReverse=1
 let g:CommandTCancelMap='<C-[>'
+" }}}
 
-" NERDTree config 
+" NERDTree config  {{{
 nnoremap <Leader>d :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen=1
 let NERDTreeMapOpenSplit='s'
 let NERDTreeMapOpenVSplit='v'
+" }}}
 
+" Autocommands {{{
 if has("autocmd")
   augroup vimrcEx
     autocmd!
+
+    autocmd FileType vim setlocal foldmethod=marker
 
     " Source the vimrc file after saving it
     autocmd bufwritepost .vimrc source  $MYVIMRC
@@ -240,10 +270,9 @@ if has("autocmd")
 
   augroup END
 else
-
   set autoindent " always set autoindenting on
-
 endif 
+"}}}
 
 
 function! s:align()
