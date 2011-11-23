@@ -67,6 +67,7 @@ Bundle 'tpope/vim-haml'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-cucumber'
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'vim-scripts/indenthtml.vim'
 
 "unite
 Bundle 'unite.vim'
