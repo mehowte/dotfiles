@@ -114,6 +114,10 @@ let coffee_compile_vert = 1
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
+" paragraph formatting (gq - keystroke)
+" see http://vimcasts.org/episodes/formatting-text-with-par/
+set formatprg=par\ -w75
+
 " large history
 set history=500
 set ruler	" show the cursor position all the time
