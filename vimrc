@@ -186,6 +186,8 @@ set incsearch	        " do incremental searching
 set hlsearch          " highlight search
 set ignorecase        " search is case insensitive
 set smartcase         " only do case sensitive match on Upper Case
+"clear search highlight after hitting return
+nnoremap <CR> :nohlsearch<CR>
 " }}}
 
 " indentation config {{{
@@ -286,7 +288,7 @@ if has("autocmd")
     autocmd FileType,BufWrite vim setlocal foldenable
 
     " Source the vimrc file after saving it
-    autocmd bufwritepost .vimrc source  $MYVIMRC
+    autocmd bufwritepost .vimrc source $MYVIMRC
 
     " set wrappring in html files
     autocmd BufNewFile,BufRead *.html* setlocal wrap
