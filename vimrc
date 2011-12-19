@@ -258,8 +258,13 @@ set splitbelow       " move window above current one on :split
 
 set visualbell t_vb=  " disable visual bell
 
-set guioptions-=T     " turn off needless toolbar on gvim/mvim
-set guifont=Monaco:h15
+if has("gui_running")
+  set guifont=Monaco:h15
+  " Don't show scroll bars in the GUI
+  set guioptions-=L
+  set guioptions-=r
+  set guioptions-=T     " turn off needless toolbar on gvim/mvim
+endif
 
 colorscheme solarized
 
