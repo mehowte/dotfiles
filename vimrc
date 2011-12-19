@@ -2,7 +2,7 @@
 set shell=/bin/sh
 set dir=/tmp
 set backupdir=/tmp
-let g:netrw_home='~/.vim/'
+let g:netrw_home='/Users/mehowte/.vim'
 
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
