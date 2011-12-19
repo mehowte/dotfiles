@@ -23,6 +23,8 @@ Bundle 'ReplaceWithRegister'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'Lokaltog/vim-easymotion'
+Bundle 'kana/vim-textobj-user'
+Bundle 'nelstrom/vim-textobj-rubyblock'
 
 " general development
 Bundle 'godlygeek/tabular'
