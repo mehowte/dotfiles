@@ -1,3 +1,12 @@
+# lexically sort filenames
+--sort-files
+
 --type-add=css=.less,.styl,.scss,.sass
---type-add=js=.coffee
+--type-add=js=.coffee,.json
+--type-add=ruby=rake,haml
+--type-add=vim=vimrc
+
+# add types ack doesn't know about
+--type-set=MARKDOWN=md,mkd,markdown
+--type-set=RDOC=rdoc
 
