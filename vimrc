@@ -124,7 +124,8 @@ vnoremap <leader>qr :QuickRun -mode v<CR>
 " }}}
 
 "Command-T config {{{
-nnoremap <leader>t :CommandTFlush<cr>\|:CommandT<CR>
+nnoremap <leader>t :CommandT<CR>
+nnoremap <leader>rt :CommandTFlush<cr>
 let g:CommandTMaxHeight=10
 let g:CommandTMatchWindowReverse=1
 let g:CommandTCancelMap='<C-[>'
