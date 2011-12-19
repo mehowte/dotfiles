@@ -54,7 +54,7 @@ Bundle 'tpope/vim-endwise'
 
 
 " file navigation
-" Bundle 'scrooloose/nerdtree' disable to improve proficiency with command-t
+Bundle 'scrooloose/nerdtree' 
 Bundle 'wincent/Command-T'
 Bundle 'mileszs/ack.vim'
 
@@ -102,6 +102,15 @@ let coffee_compile_vert = 1
 " inoremap <expr><c-e>     neocomplcache#complete_common_string()
 " }}}
 
+" NERDTree config  {{{ 
+
+nnoremap <Leader>d :NERDTreeToggle<CR> " disable to improve proficiency with command-t
+let NERDTreeQuitOnOpen=1
+let NERDTreeMapOpenSplit='s'
+let NERDTreeMapOpenVSplit='v'
+
+" }}}
+
 " NERDCommenter settings {{{
 let NERDCreateDefaultMappings=0
 nmap <leader>c <plug>NERDCommenterToggle
@@ -119,13 +128,6 @@ nnoremap <leader>t :CommandTFlush<cr>\|:CommandT<CR>
 let g:CommandTMaxHeight=10
 let g:CommandTMatchWindowReverse=1
 let g:CommandTCancelMap='<C-[>'
-" }}}
-
-" NERDTree config  {{{
-"nnoremap <Leader>d :NERDTreeToggle<CR>
-"let NERDTreeQuitOnOpen=1
-"let NERDTreeMapOpenSplit='s'
-"let NERDTreeMapOpenVSplit='v'
 " }}}
 
 " {{{ Tabularize config
