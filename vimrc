@@ -25,12 +25,12 @@ Bundle 'tpope/vim-repeat'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
-"Bundle 'sickill/vim-pasta'
+Bundle 'sickill/vim-pasta'
 
 " general development
+"Bundle 'Raimondi/delimitMate' " disable temporarily to check if adding brackets by hand is better
 Bundle 'godlygeek/tabular'
 Bundle 'vim-scripts/simplefold'
-"Bundle 'Raimondi/delimitMate' " disable temporarily to check if adding brackets by hand is better
 Bundle 'tpope/vim-unimpaired'
 Bundle 'edsono/vim-matchit'
 Bundle 'tpope/vim-abolish'
@@ -44,7 +44,6 @@ Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 Bundle 'honza/snipmate-snippets'
 Bundle 'garbas/vim-snipmate'
-Bundle 'mattn/zencoding-vim'
 
 
 " ruby development
@@ -71,6 +70,7 @@ Bundle 'vim-scripts/indenthtml.vim'
 Bundle 'nelstrom/vim-markdown-preview'
 
 " experimental
+Bundle 'sjl/vitality.vim'
 "Bundle 'vim-scripts/TortoiseTyping'
 
 filetype plugin indent on
@@ -173,6 +173,10 @@ nnoremap <silent> <Leader>z <Plug>SimpleFold_Foldsearch
 " builtin config {{{
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
+
+" this along with vitality.vim allows immediate change of the cursor in
+" terminal
+inoremap <ESC> <ESC><ESC>
 
 " paragraph formatting (gq - keystroke)
 " see http://vimcasts.org/episodes/formatting-text-with-par/
