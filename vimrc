@@ -25,6 +25,7 @@ Bundle 'tpope/vim-repeat'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
+"Bundle 'sickill/vim-pasta'
 
 " general development
 Bundle 'godlygeek/tabular'
@@ -67,6 +68,10 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-cucumber'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'vim-scripts/indenthtml.vim'
+Bundle 'nelstrom/vim-markdown-preview'
+
+" experimental
+"Bundle 'vim-scripts/TortoiseTyping'
 
 filetype plugin indent on
 
@@ -104,7 +109,7 @@ let coffee_compile_vert = 1
 
 " NERDTree config  {{{ 
 
-nnoremap <Leader>d :NERDTreeToggle<CR> " disable to improve proficiency with command-t
+nnoremap <Leader>d :NERDTreeToggle<CR> 
 let NERDTreeQuitOnOpen=1
 let NERDTreeMapOpenSplit='s'
 let NERDTreeMapOpenVSplit='v'
@@ -124,8 +129,17 @@ vnoremap <leader>qr :QuickRun -mode v<CR>
 " }}}
 
 "Command-T config {{{
-nnoremap <leader>t :CommandT<CR>
-nnoremap <leader>rt :CommandTFlush<cr>
+nnoremap <leader>gv :CommandTFlush<cr>\|:CommandT app/views<CR>
+nnoremap <leader>gm :CommandTFlush<cr>\|:CommandT app/models<CR>
+nnoremap <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<CR>
+nnoremap <leader>gd :CommandTFlush<cr>\|:CommandT app/domain<CR>
+nnoremap <leader>gj :CommandTFlush<cr>\|:CommandT app/assets/javascripts<CR>
+nnoremap <leader>gs :CommandTFlush<cr>\|:CommandT app/assets/stylesheets<CR>
+nnoremap <leader>gl :CommandTFlush<cr>\|:CommandT lib<CR>
+nnoremap <leader>gt :CommandTFlush<cr>\|:CommandT spec/<CR>
+nnoremap <leader>gf :CommandTFlush<cr>\|:CommandT features/<CR>
+nnoremap <leader>f :CommandTFlush<cr>\|:CommandT<CR>
+
 let g:CommandTMaxHeight=10
 let g:CommandTMatchWindowReverse=1
 let g:CommandTCancelMap='<C-[>'
@@ -240,6 +254,10 @@ nnoremap Y y$
 " make gR consistent with D, C and Y
 nmap gR gr$
 
+" word transpositions mapped close to line transpositions from unimpaired plugin
+nnoremap <silent> [w "_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>
+nnoremap <silent> ]w "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o>/\w\+\_W\+<CR><c-l>:nohlsearch<CR>
+
 " sweet movement between splits {{{
 
 nnoremap <C-j> <C-w>j
@@ -269,12 +287,19 @@ if has("gui_running")
 endif
 
 colorscheme solarized
+set background=dark
 
 set scrolloff=3       " screen moves when cursor goes less than 3 lines from top or bottom
 
 
-nnoremap <leader>ev :tabedit $MYVIMRC<CR> " quick editing of .vimrc
-nnoremap <leader>f mmgg=G`m " formatting
+nnoremap <leader>gi :topleft 100 :split $MYVIMRC<CR> " quick editing of .vimrc
+nnoremap <leader>gg :topleft 100 :split Gemfile<CR> " quick editing of .vimrc
+nnoremap <leader>gu :topleft 100 :split Guardfile<CR> " quick editing of .vimrc
+nnoremap <leader>gr :topleft 100 :split config/routes.rb<CR> " quick editing of .vimrc
+nnoremap <leader>aa <C-^>
+nnoremap <leader>av <C-W>v<C-^>
+nnoremap <leader>as <C-W>s<C-^>
+nnoremap <leader>= mmgg=G`m " formatting
 syntax on
 
 " }}}
