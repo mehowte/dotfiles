@@ -1,15 +1,16 @@
-require 'rubygems'
-require 'wirble'
-Wirble.init
-Wirble.colorize
+begin
+  require 'rubygems'
+  require 'wirble'
+  Wirble.init
+  Wirble.colorize
+  require 'looksee'
+  Looksee.default_width = 160
+  require 'pp'
+rescue LoadError
+end
 
 
-require 'looksee'
-Looksee.default_width = 160
 
-require 'hirb'
-#Hirb.enable
-require 'pp'
 
 
 

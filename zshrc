@@ -30,3 +30,4 @@ export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/o
 export NODE_PATH=/usr/local/lib/node_modules/
                                                                                             
 unsetopt auto_name_dirs
+unsetopt correct_all

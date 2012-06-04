@@ -9,6 +9,146 @@ let g:netrw_home='/Users/mehowte/.vim'
 set nocompatible
 "}}}
 
+" builtin config {{{
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+" this along with vitality.vim allows immediate change of the cursor in
+" terminal
+inoremap <ESC> <ESC><ESC>
+
+" map leader to comma
+let mapleader = ","
+
+" paragraph formatting (gq - keystroke)
+" see http://vimcasts.org/episodes/formatting-text-with-par/
+set formatprg=par\ -w75
+
+" commands config {{{
+set history=500       " large history
+set wildmenu          " Show possible command tab completions
+" }}}
+
+" ruler config {{{
+set showcmd	          " display normal mode commands
+set showmode          " show current mode down the bottom
+set ruler             " Show useful information on the command line
+" statusline {{{
+"set statusline=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+" }}}
+" }}}
+
+
+" search config {{{
+set incsearch	        " do incremental searching
+set hlsearch          " highlight search
+set ignorecase        " search is case insensitive
+set smartcase         " only do case sensitive match on Upper Case
+"clear search highlight after hitting return
+nnoremap <CR> :nohlsearch<CR>
+" }}}
+
+" indentation config {{{
+set tabstop=2         " How much space does a tab equals to
+set softtabstop=2     " How many paces to insert/delete while using tab or delete  
+set shiftwidth=2      " How many spaces to move while autoindenting, << and >>
+set expandtab         " Expand tabs to spaces
+set smarttab          " Backspace over expandtab
+" }}}
+
+" word wrapping config {{{
+set showbreak=…
+set nowrap            " don't wrap lines 
+set linebreak         " don't break words when wrapping lines 
+set nolist            " don't show nonprintable characters
+" }}}
+
+set showmatch         " Show matching brackets or parentheses
+
+" line numbers config {{{
+
+set relativenumber    " show line numbers relative to cursor
+set numberwidth=3     " thin linenumbers column
+set colorcolumn=90    " display colored column to see maximum chars per line allowed
+
+" }}}
+
+
+" Movement options {{{
+" sane movement between visible lines
+function! ScreenMovement(movement)
+   if &wrap
+      return "g" . a:movement
+   else
+      return a:movement
+   endif
+endfunction
+onoremap <silent> <expr> j ScreenMovement("j")
+onoremap <silent> <expr> k ScreenMovement("k")
+onoremap <silent> <expr> 0 ScreenMovement("0")
+onoremap <silent> <expr> ^ ScreenMovement("^")
+onoremap <silent> <expr> $ ScreenMovement("$")
+nnoremap <silent> <expr> j ScreenMovement("j")
+nnoremap <silent> <expr> k ScreenMovement("k")
+nnoremap <silent> <expr> 0 ScreenMovement("0")
+nnoremap <silent> <expr> ^ ScreenMovement("^")
+nnoremap <silent> <expr> $ ScreenMovement("$")
+" make Y consistent with D and C
+nnoremap Y y$
+
+" make gR consistent with D, C and Y
+nmap gR gr$
+
+" word transpositions mapped close to line transpositions from unimpaired plugin
+nnoremap <silent> [w "_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>
+nnoremap <silent> ]w "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o>/\w\+\_W\+<CR><c-l>:nohlsearch<CR>
+
+" sweet movement between splits {{{
+
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-w><C-j> <C-w>J
+nnoremap <C-w><C-k> <C-w>K
+nnoremap <C-w><C-h> <C-w>H
+nnoremap <C-w><C-l> <C-w>L
+
+set splitright         " move window right to current one on :vsplit
+set splitbelow       " move window above current one on :split
+
+" }}}
+
+" }}}
+
+set visualbell t_vb=  " disable visual bell
+
+if has("gui_running")
+  set guifont=Monaco:h15
+  " Don't show scroll bars in the GUI
+  set guioptions-=L
+  set guioptions-=r
+  set guioptions-=T     " turn off needless toolbar on gvim/mvim
+endif
+
+
+set scrolloff=3       " screen moves when cursor goes less than 3 lines from top or bottom
+
+
+nnoremap <leader>gi :topleft 100 :split $MYVIMRC<CR> " quick editing of .vimrc
+nnoremap <leader>gg :topleft 100 :split Gemfile<CR> " quick editing of .vimrc
+nnoremap <leader>gu :topleft 100 :split Guardfile<CR> " quick editing of .vimrc
+nnoremap <leader>gr :topleft 100 :split config/routes.rb<CR> " quick editing of .vimrc
+nnoremap <leader>aa <C-^>
+nnoremap <leader>av <C-W>v<C-^>
+nnoremap <leader>as <C-W>s<C-^>
+nnoremap <leader>= mmgg=G`m " formatting
+syntax on
+
+" }}}
+
 " Bundled plugins {{{
 filetype off 
 set rtp+=~/.vim/bundle/vundle/
@@ -57,6 +197,7 @@ Bundle 'tpope/vim-endwise'
 Bundle 'scrooloose/nerdtree' 
 Bundle 'wincent/Command-T'
 Bundle 'mileszs/ack.vim'
+Bundle 'kien/ctrlp.vim'
 
 " colorschemes
 Bundle 'altercation/vim-colors-solarized'
@@ -78,6 +219,11 @@ filetype plugin indent on
 "}}}
 
 " Plugins config {{{
+
+" {{{ colorscheme config
+colorscheme solarized
+set background=dark
+" }}}
 
 " delimit mate options {{{
 let delimitMate_expand_space = 1
@@ -145,6 +291,21 @@ let g:CommandTMatchWindowReverse=1
 let g:CommandTCancelMap='<C-[>'
 " }}}
 
+"CtrlP config {{{
+nnoremap <leader>vv :CtrlP app/views<CR>
+nnoremap <leader>vm :CtrlP app/models<CR>
+nnoremap <leader>vc :CtrlP app/controllers<CR>
+nnoremap <leader>vd :CtrlP app/domain<CR>
+nnoremap <leader>vj :CtrlP app/assets/javascripts<CR>
+nnoremap <leader>vs :CtrlP app/assets/stylesheets<CR>
+nnoremap <leader>vl :CtrlP lib<CR>
+nnoremap <leader>vt :CtrlP spec/<CR>
+nnoremap <leader>vf :CtrlP features/<CR>
+nnoremap <leader>c  :CtrlP<CR>
+
+let g:ctrlp_dotfiles = 0
+" }}}
+
 " {{{ Tabularize config
 function! s:align()
   let p = '^\s*|\s.*\s|\s*$'
@@ -169,145 +330,6 @@ nnoremap <silent> <Leader>z <Plug>SimpleFold_Foldsearch
 " }}}
 
 " }}}
-
-" builtin config {{{
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-
-" this along with vitality.vim allows immediate change of the cursor in
-" terminal
-inoremap <ESC> <ESC><ESC>
-
-" paragraph formatting (gq - keystroke)
-" see http://vimcasts.org/episodes/formatting-text-with-par/
-set formatprg=par\ -w75
-
-" commands config {{{
-set history=500       " large history
-set wildmenu          " Show possible command tab completions
-" }}}
-
-" ruler config {{{
-set showcmd	          " display normal mode commands
-set showmode          " show current mode down the bottom
-set ruler             " Show useful information on the command line
-" statusline {{{
-"set statusline=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-" }}}
-" }}}
-
-
-" search config {{{
-set incsearch	        " do incremental searching
-set hlsearch          " highlight search
-set ignorecase        " search is case insensitive
-set smartcase         " only do case sensitive match on Upper Case
-"clear search highlight after hitting return
-nnoremap <CR> :nohlsearch<CR>
-" }}}
-
-" indentation config {{{
-set tabstop=2         " How much space does a tab equals to
-set softtabstop=2     " How many paces to insert/delete while using tab or delete  
-set shiftwidth=2      " How many spaces to move while autoindenting, << and >>
-set expandtab         " Expand tabs to spaces
-set smarttab          " Backspace over expandtab
-" }}}
-
-" word wrapping config {{{
-set showbreak=…
-set nowrap            " don't wrap lines 
-set linebreak         " don't break words when wrapping lines 
-set nolist            " don't show nonprintable characters
-" }}}
-
-set showmatch         " Show matching brackets or parentheses
-
-" line numbers config {{{
-
-set relativenumber    " show line numbers relative to cursor
-set numberwidth=3     " thin linenumbers column
-set colorcolumn=90    " display colored column to see maximum chars per line allowed
-
-" }}}
-
-" Movement options {{{
-" sane movement between visible lines
-function! ScreenMovement(movement)
-   if &wrap
-      return "g" . a:movement
-   else
-      return a:movement
-   endif
-endfunction
-onoremap <silent> <expr> j ScreenMovement("j")
-onoremap <silent> <expr> k ScreenMovement("k")
-onoremap <silent> <expr> 0 ScreenMovement("0")
-onoremap <silent> <expr> ^ ScreenMovement("^")
-onoremap <silent> <expr> $ ScreenMovement("$")
-nnoremap <silent> <expr> j ScreenMovement("j")
-nnoremap <silent> <expr> k ScreenMovement("k")
-nnoremap <silent> <expr> 0 ScreenMovement("0")
-nnoremap <silent> <expr> ^ ScreenMovement("^")
-nnoremap <silent> <expr> $ ScreenMovement("$")
-" make Y consistent with D and C
-nnoremap Y y$
-
-" make gR consistent with D, C and Y
-nmap gR gr$
-
-" word transpositions mapped close to line transpositions from unimpaired plugin
-nnoremap <silent> [w "_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>
-nnoremap <silent> ]w "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o>/\w\+\_W\+<CR><c-l>:nohlsearch<CR>
-
-" sweet movement between splits {{{
-
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
-nnoremap <C-w><C-j> <C-w>J
-nnoremap <C-w><C-k> <C-w>K
-nnoremap <C-w><C-h> <C-w>H
-nnoremap <C-w><C-l> <C-w>L
-
-set splitright         " move window right to current one on :vsplit
-set splitbelow       " move window above current one on :split
-
-" }}}
-
-" }}}
-
-set visualbell t_vb=  " disable visual bell
-
-if has("gui_running")
-  set guifont=Monaco:h15
-  " Don't show scroll bars in the GUI
-  set guioptions-=L
-  set guioptions-=r
-  set guioptions-=T     " turn off needless toolbar on gvim/mvim
-endif
-
-colorscheme solarized
-set background=dark
-
-set scrolloff=3       " screen moves when cursor goes less than 3 lines from top or bottom
-
-
-nnoremap <leader>gi :topleft 100 :split $MYVIMRC<CR> " quick editing of .vimrc
-nnoremap <leader>gg :topleft 100 :split Gemfile<CR> " quick editing of .vimrc
-nnoremap <leader>gu :topleft 100 :split Guardfile<CR> " quick editing of .vimrc
-nnoremap <leader>gr :topleft 100 :split config/routes.rb<CR> " quick editing of .vimrc
-nnoremap <leader>aa <C-^>
-nnoremap <leader>av <C-W>v<C-^>
-nnoremap <leader>as <C-W>s<C-^>
-nnoremap <leader>= mmgg=G`m " formatting
-syntax on
-
-" }}}
-
 " Autocommands {{{
 if has("autocmd")
   augroup vimrcEx
@@ -342,3 +364,4 @@ else
   set autoindent " always set autoindenting on
 endif 
 " }}}
+
