@@ -17,8 +17,8 @@ set backspace=indent,eol,start
 " terminal
 inoremap <ESC> <ESC><ESC>
 
-" map leader to comma
-let mapleader = ","
+" map leader to space!!!
+let mapleader = " "
 
 " paragraph formatting (gq - keystroke)
 " see http://vimcasts.org/episodes/formatting-text-with-par/
@@ -136,6 +136,8 @@ endif
 
 set scrolloff=3       " screen moves when cursor goes less than 3 lines from top or bottom
 
+" shortcut for repeating . for every line in visual mode
+xnoremap . :normal .<CR>
 
 nnoremap <leader>gi :topleft 100 :split $MYVIMRC<CR> " quick editing of .vimrc
 nnoremap <leader>gg :topleft 100 :split Gemfile<CR> " quick editing of .vimrc
