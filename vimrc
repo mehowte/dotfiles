@@ -139,13 +139,23 @@ set scrolloff=3       " screen moves when cursor goes less than 3 lines from top
 " shortcut for repeating . for every line in visual mode
 xnoremap . :normal .<CR>
 
-nnoremap <leader>gi :topleft 100 :split $MYVIMRC<CR> " quick editing of .vimrc
+nnoremap <leader>gi :tabedit ~/code/github/mehowte/dotfiles/vimrc<CR>:cd ~/code/github/mehowte/dotfiles<CR> " quick editing of .vimrc
 nnoremap <leader>gg :topleft 100 :split Gemfile<CR> " quick editing of .vimrc
 nnoremap <leader>gu :topleft 100 :split Guardfile<CR> " quick editing of .vimrc
 nnoremap <leader>gr :topleft 100 :split config/routes.rb<CR> " quick editing of .vimrc
-nnoremap <leader>aa <C-^>
-nnoremap <leader>av <C-W>v<C-^>
-nnoremap <leader>as <C-W>s<C-^>
+"nnoremap <leader>aa <C-^>
+"nnoremap <leader>av <C-W>v<C-^>
+"nnoremap <leader>as <C-W>s<C-^>
+nnoremap <leader>aa :A<cr>
+nnoremap <leader>av :AV<cr>
+nnoremap <leader>as :AS<cr>
+nnoremap <leader>rr :R<cr>
+nnoremap <leader>rv :RV<cr>
+nnoremap <leader>rs :RS<cr>
+nnoremap <leader>rco :Rcontroller<cr>
+nnoremap <leader>rmo :Rmodel<cr>
+nnoremap <leader>rvi :Rview<cr>
+nnoremap <leader>rmi :Rmigration<cr>
 nnoremap <leader>= mmgg=G`m " formatting
 syntax on
 
@@ -341,7 +351,7 @@ if has("autocmd")
     autocmd FileType,BufWrite vim setlocal foldenable
 
     " Source the vimrc file after saving it
-    autocmd bufwritepost .vimrc source $MYVIMRC
+    autocmd bufwritepost ~/code/github/mehowte/dotfiles/vimrc source $MYVIMRC
 
     " set wrappring in html files
     autocmd BufNewFile,BufRead *.html* setlocal wrap

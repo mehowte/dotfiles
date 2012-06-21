@@ -11,3 +11,6 @@ alias mvd='cdd && mvim'
 setopt auto_cd
 cdpath=(~/code/work ~/code/private ~/code/spikes ~/code/github/mehowte ~/code/github/applicake)
 
+alias pw='cd ~/code/private/programmingworkout'
+alias bb='cd ~/code/work/bottle_booths'
+alias cr='cd ~/code/work/Credictive'
