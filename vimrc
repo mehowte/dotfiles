@@ -13,6 +13,9 @@ set nocompatible
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
+set encoding=utf-8
+setglobal fileencoding=utf-8
+
 " this along with vitality.vim allows immediate change of the cursor in
 " terminal
 inoremap <ESC> <ESC><ESC>
@@ -59,7 +62,7 @@ set smarttab          " Backspace over expandtab
 " }}}
 
 " word wrapping config {{{
-set showbreak=…
+"set showbreak=…
 set nowrap            " don't wrap lines 
 set linebreak         " don't break words when wrapping lines 
 set nolist            " don't show nonprintable characters
@@ -117,7 +120,7 @@ nnoremap <C-w><C-h> <C-w>H
 nnoremap <C-w><C-l> <C-w>L
 
 set splitright         " move window right to current one on :vsplit
-set splitbelow       " move window above current one on :split
+set splitbelow         " move window below current one on :split
 
 " }}}
 
@@ -143,9 +146,9 @@ nnoremap <leader>gi :tabedit ~/code/github/mehowte/dotfiles/vimrc<CR>:cd ~/code/
 nnoremap <leader>gg :topleft 100 :split Gemfile<CR> " quick editing of .vimrc
 nnoremap <leader>gu :topleft 100 :split Guardfile<CR> " quick editing of .vimrc
 nnoremap <leader>gr :topleft 100 :split config/routes.rb<CR> " quick editing of .vimrc
-"nnoremap <leader>aa <C-^>
-"nnoremap <leader>av <C-W>v<C-^>
-"nnoremap <leader>as <C-W>s<C-^>
+nnoremap <leader><leader> <C-^>
+nnoremap <leader>v <C-W>v<C-^>
+nnoremap <leader>s <C-W>s<C-^>
 nnoremap <leader>aa :A<cr>
 nnoremap <leader>av :AV<cr>
 nnoremap <leader>as :AS<cr>
@@ -174,13 +177,11 @@ Bundle 'gmarik/vundle'
 Bundle 'ReplaceWithRegister'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
-Bundle 'Lokaltog/vim-easymotion'
 Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'sickill/vim-pasta'
 
 " general development
-"Bundle 'Raimondi/delimitMate' " disable temporarily to check if adding brackets by hand is better
 Bundle 'godlygeek/tabular'
 Bundle 'vim-scripts/simplefold'
 Bundle 'tpope/vim-unimpaired'
@@ -191,11 +192,8 @@ Bundle 'thinca/vim-quickrun'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-fugitive'
 
-" snippets with dependencies
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'honza/snipmate-snippets'
-Bundle 'garbas/vim-snipmate'
+" snippets
+Bundle 'SirVer/ultisnips'
 
 
 " ruby development
@@ -207,7 +205,6 @@ Bundle 'tpope/vim-endwise'
 
 " file navigation
 Bundle 'scrooloose/nerdtree' 
-Bundle 'wincent/Command-T'
 Bundle 'mileszs/ack.vim'
 Bundle 'kien/ctrlp.vim'
 
@@ -223,8 +220,9 @@ Bundle 'vim-scripts/indenthtml.vim'
 Bundle 'nelstrom/vim-markdown-preview'
 
 " experimental
-Bundle 'sjl/vitality.vim'
-"Bundle 'vim-scripts/TortoiseTyping'
+" makes vim play nicely with iterm2/tmux
+Bundle 'sjl/vitality.vim' 
+Bundle 'tpope/vim-dispatch'
 
 filetype plugin indent on
 
@@ -235,6 +233,10 @@ filetype plugin indent on
 " {{{ colorscheme config
 colorscheme solarized
 set background=dark
+" }}}
+
+"{{{ Ack config
+  let g:ackprg = 'ag --nogroup --nocolor --column'
 " }}}
 
 " delimit mate options {{{
@@ -253,16 +255,9 @@ let ruby_operators = 1
 let coffee_compile_vert = 1
 " }}}
 
-" zencoding options {{{
-  let g:user_zen_leader_key = '<c-j>'
-" }}}
-
-" neocomplcache settings {{{
-" let g:neocomplcache_enable_at_startup = 1
-" let g:neocomplcache_snippets_dir = '$HOME/.vim/snippets'
-" imap  <silent><expr><tab>  neocomplcache#sources#snippets_complete#expandable() ? "\<plug>(neocomplcache_snippets_expand)" : (pumvisible() ? "\<c-e>" : "\<tab>")
-" smap  <tab>  <right><plug>(neocomplcache_snippets_jump) 
-" inoremap <expr><c-e>     neocomplcache#complete_common_string()
+" UltiSnips {{{
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsExpandTrigger="<tab>"
 " }}}
 
 " NERDTree config  {{{ 
@@ -287,33 +282,33 @@ vnoremap <leader>qr :QuickRun -mode v<CR>
 " }}}
 
 "Command-T config {{{
-nnoremap <leader>gv :CommandTFlush<cr>\|:CommandT app/views<CR>
-nnoremap <leader>gm :CommandTFlush<cr>\|:CommandT app/models<CR>
-nnoremap <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<CR>
-nnoremap <leader>gd :CommandTFlush<cr>\|:CommandT app/domain<CR>
-nnoremap <leader>gj :CommandTFlush<cr>\|:CommandT app/assets/javascripts<CR>
-nnoremap <leader>gs :CommandTFlush<cr>\|:CommandT app/assets/stylesheets<CR>
-nnoremap <leader>gl :CommandTFlush<cr>\|:CommandT lib<CR>
-nnoremap <leader>gt :CommandTFlush<cr>\|:CommandT spec/<CR>
-nnoremap <leader>gf :CommandTFlush<cr>\|:CommandT features/<CR>
-nnoremap <leader>f :CommandTFlush<cr>\|:CommandT<CR>
+"nnoremap <leader>gv :CommandTFlush<cr>\|:CommandT app/views<CR>
+"nnoremap <leader>gm :CommandTFlush<cr>\|:CommandT app/models<CR>
+"nnoremap <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<CR>
+"nnoremap <leader>gd :CommandTFlush<cr>\|:CommandT app/domain<CR>
+"nnoremap <leader>gj :CommandTFlush<cr>\|:CommandT app/assets/javascripts<CR>
+"nnoremap <leader>gs :CommandTFlush<cr>\|:CommandT app/assets/stylesheets<CR>
+"nnoremap <leader>gl :CommandTFlush<cr>\|:CommandT lib<CR>
+"nnoremap <leader>gt :CommandTFlush<cr>\|:CommandT spec/<CR>
+"nnoremap <leader>gf :CommandTFlush<cr>\|:CommandT features/<CR>
+"nnoremap <leader>f :CommandTFlush<cr>\|:CommandT<CR>
 
-let g:CommandTMaxHeight=10
-let g:CommandTMatchWindowReverse=1
-let g:CommandTCancelMap='<C-[>'
+"let g:CommandTMaxHeight=10
+"let g:CommandTMatchWindowReverse=1
+"let g:CommandTCancelMap='<C-[>'
 " }}}
 
 "CtrlP config {{{
-nnoremap <leader>vv :CtrlP app/views<CR>
-nnoremap <leader>vm :CtrlP app/models<CR>
-nnoremap <leader>vc :CtrlP app/controllers<CR>
-nnoremap <leader>vd :CtrlP app/domain<CR>
-nnoremap <leader>vj :CtrlP app/assets/javascripts<CR>
-nnoremap <leader>vs :CtrlP app/assets/stylesheets<CR>
-nnoremap <leader>vl :CtrlP lib<CR>
-nnoremap <leader>vt :CtrlP spec/<CR>
-nnoremap <leader>vf :CtrlP features/<CR>
-nnoremap <leader>c  :CtrlP<CR>
+nnoremap <leader>gv :CtrlP app/views<CR>
+nnoremap <leader>gm :CtrlP app/models<CR>
+nnoremap <leader>gc :CtrlP app/controllers<CR>
+nnoremap <leader>gd :CtrlP app/domain<CR>
+nnoremap <leader>gj :CtrlP app/assets/javascripts<CR>
+nnoremap <leader>gs :CtrlP app/assets/stylesheets<CR>
+nnoremap <leader>gl :CtrlP lib<CR>
+nnoremap <leader>gt :CtrlP spec/<CR>
+nnoremap <leader>gf :CtrlP features/<CR>
+nnoremap <leader>f  :CtrlP<CR>
 
 let g:ctrlp_dotfiles = 0
 " }}}
@@ -342,6 +337,7 @@ nnoremap <silent> <Leader>z <Plug>SimpleFold_Foldsearch
 " }}}
 
 " }}}
+
 " Autocommands {{{
 if has("autocmd")
   augroup vimrcEx
