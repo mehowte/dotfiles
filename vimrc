@@ -218,6 +218,7 @@ Bundle 'tpope/vim-cucumber'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'vim-scripts/indenthtml.vim'
 Bundle 'nelstrom/vim-markdown-preview'
+Bundle 'nono/vim-handlebars'
 
 " experimental
 " makes vim play nicely with iterm2/tmux
