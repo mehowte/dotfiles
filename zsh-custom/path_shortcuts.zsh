@@ -22,6 +22,7 @@ alias fperf='cd ~/code/fs/permissions-frontend'
 alias fsalf='cd ~/code/fs/sales-frontend'
 alias fsetf='cd ~/code/fs/settings-frontend'
 alias fvoif='cd ~/code/fs/voice-frontend'
+alias fleaf='cd ~/code/fs/leads-frontend'
 
 alias cdp='cd ~/code/private'
 alias cds='cd ~/code/spikes'

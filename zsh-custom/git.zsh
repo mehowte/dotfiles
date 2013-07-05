@@ -20,3 +20,7 @@ alias gpom='gpo master'
 alias gloc='glo $(current_branch)'
 alias gpoc='gpo $(current_branch)'
 
+alias glog='git log --oneline --decorate --all'
+alias glogg='git log --oneline --decorate --all --graph'
+alias glogs='git log  --decorate --all --stat'
+
